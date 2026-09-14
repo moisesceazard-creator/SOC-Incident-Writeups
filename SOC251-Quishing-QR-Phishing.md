@@ -1,99 +1,62 @@
-## 🔍 SOC Incident Write-Up: SOC251 - Quishing Detected (QR Code Phishing)
+# 🚨 SOC251 - Quishing Detected (QR Code Phishing)
 
-**Platform:** LetsDefend
-**Case Name:** SOC251 - Quishing Detected (QR Code Phishing)
-**Event ID:** 214 | **Severity:** Medium | **Difficulty:** Easy
-**Analyst:** Moises Ceazar Del Mundo
-**Target Email:** Claire@letsdefend.io (172.16.17.72)
-
-> Note: This case is based on a simulated SOC alert (LetsDefend lab environment). IOCs, IPs, domains, and user identities are lab/training data.
+**Analyst:** Moises Ceazar Del Mundo, CC  
+**Platform:** LetsDefend  
+**Verdict:** 🟢 True Positive (100% Playbook Score)  
 
 ---
 
-### 1. Executive Summary
+## 📊 Executive Summary
 
-A phishing alert triggered regarding a suspicious email titled *"New Year's Mandatory Security Update: Implementing Multi-Factor Authentication (MFA)."* Investigation confirmed the email originated from an untrusted external domain (`microsecmfa.com`) and contained a malicious QR code (Quishing) designed to harvest user credentials. The alert was classified as a **True Positive**, and containment measures were initiated to safeguard compromised credentials.
-
----
-
-### 2. Alert Details & Telemetry Data
-
-| Metric | Details |
-|---|---|
-| Rule Name | SOC251 - Quishing Detected (QR Code Phishing) |
-| Event Time | 2024-01-01T12:37:38+03:00 |
-| Closed At | 2026-02-19T03:15:28+00:00 |
-| SLA | 1555.98 |
-| Sender Address | security@microsecmfa.com |
-| Recipient Address | Claire@letsdefend.io |
-| Source IP | 158.69.201.47 (External) |
-| Destination Host IP | 172.16.17.72 |
-| Email Subject | New Year's Mandatory Security Update: Implementing Multi-Factor Authentication (MFA) |
-| Device Action | Allowed |
-| Playbook Score | 25 (100% success rate) |
-| Result | True Positive |
+| Field | Details |
+| :--- | :--- |
+| **Event ID** | 214 |
+| **Severity** | Medium |
+| **Category** | Phishing / Quishing |
+| **Rule Name** | SOC251 - Quishing Detected (QR Code Phishing) |
+| **Event Time** | 2024-01-01T12:37:38+03:00 |
+| **Target User / Host** | `Claire@letsdefend.io` (`172.16.17.72`) |
+| **Result** | True Positive |
 
 ---
 
-### 3. Incident Investigation & Triage Workflow
+## 🔄 Incident Response Phases (NIST/SANS Framework)
 
-**Step 1: Email Header & Sender Verification**
-- Analyzed the sender domain `microsecmfa.com`. Identified typosquatting/masquerading attempt spoofing legitimate Microsoft MFA communications.
+### Phase 1: Preparation & Detection
+* **Alert Trigger:** Security gateway rule flagged an incoming phishing email titled *"New Year's Mandatory Security Update: Implementing Multi-Factor Authentication (MFA)"*.
+* **Initial Observation:** Message delivered to `Claire@letsdefend.io` from sender `security@microsecmfa.com` via external IP `158.69.201.47`. Device action recorded as `Allowed`.
 
-**Step 2: Reconnaissance Identification**
-- Determined the type of reconnaissance used by the attacker: **Phishing for Information** — the attacker sent a Quishing email to the target user to harvest credentials (MITRE T1589.002).
+### Phase 2: Identification & Analysis
+* **Artifact & Indicator Triage (IoCs):**
+  * **Sender Address:** `security@microsecmfa.com`
+  * **Recipient Address:** `Claire@letsdefend.io`
+  * **Target Host IP:** `172.16.17.72`
+  * **Source IP Address:** `158.69.201.47` (External)
+  * **Subject:** `New Year's Mandatory Security Update: Implementing Multi-Factor Authentication (MFA)`
+  * **Phishing Vector:** Embedded QR Code (Quishing)
+* **Domain & Reputation Analysis:** Sender domain `microsecmfa.com` identified as a typosquatting attempt spoofing Microsoft MFA services. Threat Intelligence platforms flagged source IP `158.69.201.47` for hosting active credential-harvesting infrastructure.
+* **Payload Analysis:** Decoded the embedded QR code image from the email body; confirmed it redirected to an external landing page imitating an MFA login prompt.
+* **Scope Determination:** Log Management inspection confirmed communication was limited exclusively to `172.16.17.72` with no broader internal spread.
 
-**Step 3: Threat Intelligence & IP Reputation Analysis**
-- Queried external Threat Intelligence platforms using source IP `158.69.201.47`.
-- Result: IP flagged as suspicious and reported multiple times by security researchers for hosting malicious phishing infrastructure.
+### Phase 3: Containment, Eradication & Recovery
+* **Containment:**
+  * **Perimeter Blocking:** Blacklisted source IP `158.69.201.47` and domain `microsecmfa.com` at the firewall and email gateway levels.
+  * **Account Protection:** Revoked active sessions and initiated an emergency password reset for `Claire@letsdefend.io` to neutralize potential credential compromise.
+* **Eradication:**
+  * **Mail Purge:** Executed a global search-and-purge to remove the phishing message across all organizational mailboxes.
+* **Recovery:**
+  * **Identity Restoration:** Verified post-reset account activity and safely restored user access following security verification.
 
-**Step 4: Quishing & Artifact Analysis**
-- Inspected email payload containing a QR code embedded in the body.
-- Decoded QR link pointing to an external credential-harvesting landing page mimicking an MFA login prompt.
-
-**Step 5: Scope Determination**
-- Checked Log Management for the attacker IP (`158.69.201.47`). Only `172.16.17.72` observed as the destination IP — confirming the email was delivered to Claire@letsdefend.io with no lateral spread to other internal hosts.
-
-**Step 6: Containment Decision**
-- Since the user's credentials and mailbox were potentially compromised, the containment process was initiated.
-
----
-
-### 4. Indicators of Compromise (IOCs)
-
-- **Sender Address:** security@microsecmfa.com
-- **Attacker IP:** 158.69.201.47
-- **Target User:** Claire@letsdefend.io
-- **Target IP:** 172.16.17.72
-
----
-
-### 5. MITRE ATT&CK Mapping
-
-| Tactic | Technique ID | Technique Name |
-|---|---|---|
-| Reconnaissance (TA0043) | T1589.002 | Gather Victim Identity Information: Email Addresses |
-| Reconnaissance (TA0043) | T1598.002 | Phishing for Information: Spearphishing Attachment |
-| Reconnaissance (TA0043) | T1598.003 | Phishing for Information: Spearphishing Link (Quishing) |
-| Resource Development / Defense Evasion (TA0042/TA0005) | T1036 | Masquerading: Domain spoofing targeting security updates |
-| Credential Access (TA0006) | T1140 | Deobfuscate/Decode Files or Information: QR code payload extraction |
+### Phase 4: Post-Incident Activity & Lessons Learned
+* **QR Code / OCR Inspection Gap:** The email bypassed initial filters (`Allowed`) because QR codes render as image objects rather than plain text links. Enable Optical Character Recognition (OCR) and QR-code extraction features on the Secure Email Gateway (SEG).
+* **Lookalike Domain Filtering:** Enforce stricter domain-reputation rules and typosquatting detection for incoming emails referencing security updates or authentication providers.
+* **User Awareness Training:** Launch targeted campaigns educating employees on "Quishing" tactics, highlighting the dangers of scanning unexpected QR codes using personal or corporate mobile devices.
 
 ---
 
-### 6. Playbook Verdict & Containment Actions
+## 🎯 MITRE ATT&CK Mapping
 
-**Final Verdict:** True Positive
-
-**Remediation Actions Taken:**
-1. **Mail Quarantine:** Purged malicious phishing email from the recipient mailbox (Claire@letsdefend.io).
-2. **IP & Domain Blocking:** Blocked IP `158.69.201.47` and domain `microsecmfa.com` at the email gateway and firewall level.
-3. **Credential Reset:** Initiated password reset and session revocation for Claire@letsdefend.io.
-4. **Security Awareness:** Recommended pushing a user notification alert regarding QR-code-based phishing tactics (Quishing).
-
----
-
-### 7. Lessons Learned / Recommendations
-
-- Email gateway allowed the message through (Device Action: *Allowed*) despite the sender domain being a close typosquat of a legitimate Microsoft-related domain — recommend tightening lookalike-domain detection rules for MFA/security-themed subject lines.
-- QR-code payloads bypass traditional URL/link-scanning controls since the malicious link is embedded as an image rather than plain text; recommend enabling QR-code/image decoding in the email security gateway.
-- Conduct targeted user awareness training on Quishing, given it is a growing phishing vector that evades conventional text-based filters.
+* **T1589.002 - Gather Victim Identity Information:** Email Addresses
+* **T1598.003 - Phishing for Information:** Spearphishing Link (Quishing via QR Code)
+* **T1036 - Masquerading:** Domain spoofing targeting MFA security update themes
+* **T1140 - Deobfuscate/Decode Files or Information:** Extraction and decoding of embedded QR payloads
