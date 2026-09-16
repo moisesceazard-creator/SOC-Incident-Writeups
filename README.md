@@ -32,7 +32,7 @@ Documentation of hands-on SOC incident investigations, threat triage, MITRE ATT&
 | **SOC153** | Suspicious Powershell Script Executed | 🟡 Medium | Malware | 238 | 2026-02-25 | *Pending* |
 | **SOC326** | Impersonating Domain MX Record Change Detected | 🟡 Medium | ThreatIntel | 304 | 2026-02-23 | *Pending* |
 | **SOC336** | Windows OLE Zero-Click RCE Exploitation (CVE-2025-21298) | 🔴 Critical | Malware | 314 | 2026-02-22 | [Read Write-Up](./SOC336_Windows_OLE_Zero_Click_RCE.md) |
-| **SOC338** | Lumma Stealer - DLL Side-Loading via ClickFix Phishing | 🔴 Critical | Data Leakage | 316 | 2026-02-21 | *Pending* |
+| **SOC338** | Lumma Stealer - DLL Side-Loading via ClickFix Phishing | 🔴 Critical | Data Leakage | 316 | 2026-02-21 | [Read Write-Up](./SOC338_Lumma_Stealer_ClickFix_Phishing.md) |
 | **SOC335** | CVE-2024-49138 Exploitation Detected | 🟡 Medium | Privilege Escalation | 313 | 2026-02-21 | *Pending* |
 | **SOC342** | CVE-2025-53770 SharePoint ToolShell Auth Bypass and RCE | 🔴 Critical | Web Attack | 320 | 2026-02-21 | [Read Write-Up](./SOC342_SharePoint_ToolShell_Auth_Bypass_RCE.md) |
 | **SOC282** | Phishing Alert - Deceptive Mail Detected | 🟡 Medium | Exchange | 257 | 2026-02-20 | *Pending* |
