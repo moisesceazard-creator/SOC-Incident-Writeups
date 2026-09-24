@@ -27,10 +27,10 @@ Documentation of hands-on SOC incident investigations, threat triage, MITRE ATT&
 
 | Rule ID | Case Name | Severity | Type | Event ID | Date Closed | Write-Up Status |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| **SOC274** | Palo Alto Networks PAN-OS Command Injection (CVE-2024-3400) | 🔴 Critical | Web Attack | 249 | 2026-07-09 | [Read Write-Up](./SOC274_PANOS_CommandInjection_CVE-2024-3400.md) |
+| **SOC274** | Palo Alto Networks PAN-OS Command Injection (CVE-2024-3400) | 🔴 Critical | Web Attack | 249 | 2026-07-09 | [Read Write-Up](./SOC274_PAN_OS_Command_Injection.md) |
 | **SOC257** | VPN Connection Detected from Unauthorized Country | 🟢 Low | Unauthorized Access | 225 | 2026-07-08 | [Read Write-Up](./SOC257_VPN_Connection_Unauthorized_Country.md) |
 | **SOC153** | Suspicious Powershell Script Executed | 🟡 Medium | Malware | 238 | 2026-02-25 | [Read Write-Up](./SOC153_Suspicious_PowerShell_Script_Executed.md) |
-| **SOC326** | Impersonating Domain MX Record Change Detected | 🟡 Medium | ThreatIntel | 304 | 2026-02-23 | *Pending* |
+| **SOC326** | Impersonating Domain MX Record Change Detected | 🟡 Medium | ThreatIntel | 304 | 2026-02-23 | [Read Write-Up](./SOC326_Impersonating_Domain_MX_Record_Change_Detected.md) |
 | **SOC336** | Windows OLE Zero-Click RCE Exploitation (CVE-2025-21298) | 🔴 Critical | Malware | 314 | 2026-02-22 | [Read Write-Up](./SOC336_Windows_OLE_Zero_Click_RCE.md) |
 | **SOC338** | Lumma Stealer - DLL Side-Loading via ClickFix Phishing | 🔴 Critical | Data Leakage | 316 | 2026-02-21 | [Read Write-Up](./SOC338_Lumma_Stealer_ClickFix_Phishing.md) |
 | **SOC335** | CVE-2024-49138 Exploitation Detected | 🟡 Medium | Privilege Escalation | 313 | 2026-02-21 | [Read Write-Up](./SOC335_CVE_2024_49138_Exploitation.md) |
