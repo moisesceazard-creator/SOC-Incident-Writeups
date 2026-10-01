@@ -35,8 +35,8 @@ Documentation of hands-on SOC incident investigations, threat triage, MITRE ATT&
 | **SOC338** | Lumma Stealer - DLL Side-Loading via ClickFix Phishing | 🔴 Critical | Data Leakage | 316 | 2026-02-21 | [Read Write-Up](./SOC338_Lumma_Stealer_ClickFix_Phishing.md) |
 | **SOC335** | CVE-2024-49138 Exploitation Detected | 🟡 Medium | Privilege Escalation | 313 | 2026-02-21 | [Read Write-Up](./SOC335_CVE_2024_49138_Exploitation.md) |
 | **SOC342** | CVE-2025-53770 SharePoint ToolShell Auth Bypass and RCE | 🔴 Critical | Web Attack | 320 | 2026-02-21 | [Read Write-Up](./SOC342_SharePoint_ToolShell_Auth_Bypass_RCE.md) |
+| **SOC282** | Phishing Alert - Deceptive Mail Detected | 🟡 Medium | Exchange | 257 | 2026-02-20 | [Read Write-Up](./SOC282_Phishing_Alert_Deceptive_Mail.md) |
 | **SOC287** | Arbitrary File Read on Checkpoint Security Gateway (CVE-2024-24919) | 🟠 High | Web Attack | 263 | 2026-02-19 | [Read Write-Up](./SOC287_Arbitrary_File_Read_Checkpoint.md) |
-| **SOC282** | Phishing Alert - Deceptive Mail Detected | 🟡 Medium | Exchange | 257 | 2026-02-20 | *Pending* |
 | **SOC251** | Quishing Detected (QR Code Phishing) | 🟡 Medium | Exchange | 214 | 2026-02-19 | [Read Write-Up](./SOC251_Quishing_Detected.md) |
 
 ---
